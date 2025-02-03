@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using INWalks.API.Data;
 using INWalks.API.Models.Domain;
 using INWalks.API.Models.DTO;
@@ -28,6 +29,18 @@ namespace INWalks.API.Controllers
             return Ok(walksDto);
         }
 
+        [HttpGet("{id:Guid}")]
+        public async Task<IActionResult> GetWalkByIdAsync([FromRoute] Guid id)
+        {
+            Walk? walk = await _walkData.GetWalkByIdAsync(id);
+            if(walk is null)
+            {
+                return NotFound();
+            }
+            WalkDto walkDto = _mapper.Map<WalkDto>(walk);
+            return Ok(walkDto);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateWalkAsync([FromBody] AddWalkRequestDto addWalkRequestDto)
         {
@@ -43,5 +56,38 @@ namespace INWalks.API.Controllers
             return Ok(walkDto);
         }
 
+        [HttpPut("{id:Guid}")]
+        public async Task<IActionResult> UpdateWalkByIdAsync([FromRoute] Guid id, [FromBody] UpdateWalkRequestDto updateWalkRequestDto)
+        {
+            if(updateWalkRequestDto is null)
+            {
+                return BadRequest("walk request is not correct");
+            }
+
+            Walk? walk = _mapper.Map<Walk>(updateWalkRequestDto);
+
+            walk = await _walkData.UpdateWalkByIdAsync(id, walk);
+            if(walk is null)
+            {
+                return NotFound();
+            }
+
+            WalkDto walkDto = _mapper.Map<WalkDto>(walk);
+            return Ok(walkDto);
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteWalkByIDAsync(Guid id)
+        {
+            Walk? walk = await _walkData.DeleteWalkByIdAsync(id);
+
+            if(walk is null)
+            {
+                return NotFound();
+            }
+
+            WalkDto walkDto = _mapper.Map<WalkDto>(walk);
+            return Ok(walkDto);
+        }
     }
 }

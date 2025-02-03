@@ -16,6 +16,7 @@ namespace INWalks.API.Mapper
 
             #region Walk model mapper
             CreateMap<Walk, AddWalkRequestDto>().ReverseMap();
+            CreateMap<Walk, UpdateWalkRequestDto>().ReverseMap();
             CreateMap<Walk, WalkDto>().ReverseMap();
             #endregion
 
