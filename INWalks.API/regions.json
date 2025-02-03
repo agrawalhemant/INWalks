@@ -1,0 +1,177 @@
+[
+  {
+    "Name": "Andhra Pradesh",
+    "Code": "AP",
+    "RegionImageUrl": "https://images.pexels.com/photos/417344/pexels-photo-417344.jpeg"
+  },
+  {
+    "Name": "Arunachal Pradesh",
+    "Code": "AR",
+    "RegionImageUrl": "https://images.pexels.com/photos/417345/pexels-photo-417345.jpeg"
+  },
+  {
+    "Name": "Assam",
+    "Code": "AS",
+    "RegionImageUrl": "https://images.pexels.com/photos/417346/pexels-photo-417346.jpeg"
+  },
+  {
+    "Name": "Bihar",
+    "Code": "BR",
+    "RegionImageUrl": "https://images.pexels.com/photos/417347/pexels-photo-417347.jpeg"
+  },
+  {
+    "Name": "Chhattisgarh",
+    "Code": "CG",
+    "RegionImageUrl": "https://images.pexels.com/photos/417348/pexels-photo-417348.jpeg"
+  },
+  {
+    "Name": "Goa",
+    "Code": "GA",
+    "RegionImageUrl": "https://images.pexels.com/photos/417349/pexels-photo-417349.jpeg"
+  },
+  {
+    "Name": "Gujarat",
+    "Code": "GJ",
+    "RegionImageUrl": "https://images.pexels.com/photos/417350/pexels-photo-417350.jpeg"
+  },
+  {
+    "Name": "Haryana",
+    "Code": "HR",
+    "RegionImageUrl": "https://images.pexels.com/photos/417351/pexels-photo-417351.jpeg"
+  },
+  {
+    "Name": "Himachal Pradesh",
+    "Code": "HP",
+    "RegionImageUrl": "https://images.pexels.com/photos/417352/pexels-photo-417352.jpeg"
+  },
+  {
+    "Name": "Jharkhand",
+    "Code": "JH",
+    "RegionImageUrl": "https://images.pexels.com/photos/417353/pexels-photo-417353.jpeg"
+  },
+  {
+    "Name": "Karnataka",
+    "Code": "KA",
+    "RegionImageUrl": "https://images.pexels.com/photos/417354/pexels-photo-417354.jpeg"
+  },
+  {
+    "Name": "Kerala",
+    "Code": "KL",
+    "RegionImageUrl": "https://images.pexels.com/photos/417355/pexels-photo-417355.jpeg"
+  },
+  {
+    "Name": "Madhya Pradesh",
+    "Code": "MP",
+    "RegionImageUrl": "https://images.pexels.com/photos/417356/pexels-photo-417356.jpeg"
+  },
+  {
+    "Name": "Maharashtra",
+    "Code": "MH",
+    "RegionImageUrl": "https://images.pexels.com/photos/417357/pexels-photo-417357.jpeg"
+  },
+  {
+    "Name": "Manipur",
+    "Code": "MN",
+    "RegionImageUrl": "https://images.pexels.com/photos/417358/pexels-photo-417358.jpeg"
+  },
+  {
+    "Name": "Meghalaya",
+    "Code": "ML",
+    "RegionImageUrl": "https://images.pexels.com/photos/417359/pexels-photo-417359.jpeg"
+  },
+  {
+    "Name": "Mizoram",
+    "Code": "MZ",
+    "RegionImageUrl": "https://images.pexels.com/photos/417360/pexels-photo-417360.jpeg"
+  },
+  {
+    "Name": "Nagaland",
+    "Code": "NL",
+    "RegionImageUrl": "https://images.pexels.com/photos/417361/pexels-photo-417361.jpeg"
+  },
+  {
+    "Name": "Odisha",
+    "Code": "OD",
+    "RegionImageUrl": "https://images.pexels.com/photos/417362/pexels-photo-417362.jpeg"
+  },
+  {
+    "Name": "Punjab",
+    "Code": "PB",
+    "RegionImageUrl": "https://images.pexels.com/photos/417363/pexels-photo-417363.jpeg"
+  }
+  {
+    "Name": "Sikkim",
+    "Code": "SK",
+    "RegionImageUrl": "https://images.pexels.com/photos/417365/pexels-photo-417365.jpeg"
+  },
+  {
+    "Name": "Tamil Nadu",
+    "Code": "TN",
+    "RegionImageUrl": "https://images.pexels.com/photos/417366/pexels-photo-417366.jpeg"
+  },
+  {
+    "Name": "Telangana",
+    "Code": "TS",
+    "RegionImageUrl": "https://images.pexels.com/photos/417367/pexels-photo-417367.jpeg"
+  },
+  {
+    "Name": "Tripura",
+    "Code": "TR",
+    "RegionImageUrl": "https://images.pexels.com/photos/417368/pexels-photo-417368.jpeg"
+  },
+  {
+    "Name": "Uttar Pradesh",
+    "Code": "UP",
+    "RegionImageUrl": "https://images.pexels.com/photos/417369/pexels-photo-417369.jpeg"
+  },
+  {
+    "Name": "Uttarakhand",
+    "Code": "UK",
+    "RegionImageUrl": "https://images.pexels.com/photos/417370/pexels-photo-417370.jpeg"
+  },
+  {
+    "Name": "West Bengal",
+    "Code": "WB",
+    "RegionImageUrl": "https://images.pexels.com/photos/417371/pexels-photo-417371.jpeg"
+  },
+  {
+    "Name": "Andaman and Nicobar Islands",
+    "Code": "AN",
+    "RegionImageUrl": "https://images.pexels.com/photos/417372/pexels-photo-417372.jpeg"
+  },
+  {
+    "Name": "Chandigarh",
+    "Code": "CH",
+    "RegionImageUrl": "https://images.pexels.com/photos/417373/pexels-photo-417373.jpeg"
+  },
+  {
+    "Name": "Dadra and Nagar Haveli and Daman and Diu",
+    "Code": "DN",
+    "RegionImageUrl": "https://images.pexels.com/photos/417374/pexels-photo-417374.jpeg"
+  },
+  {
+    "Name": "Delhi",
+    "Code": "DL",
+    "RegionImageUrl": "https://images.pexels.com/photos/417375/pexels-photo-417375.jpeg"
+  },
+  {
+    "Name": "Jammu and Kashmir",
+    "Code": "JK",
+    "RegionImageUrl": "https://images.pexels.com/photos/417376/pexels-photo-417376.jpeg"
+  },
+  {
+    "Name": "Ladakh",
+    "Code": "LA",
+    "RegionImageUrl": "https://images.pexels.com/photos/417377/pexels-photo-417377.jpeg"
+  },
+  {
+    "Name": "Lakshadweep",
+    "Code": "LD",
+    "RegionImageUrl": "https://images.pexels.com/photos/417378/pexels-photo-417378.jpeg"
+  },
+  {
+    "Name": "Puducherry",
+    "Code": "PY",
+    "RegionImageUrl": "https://images.pexels.com/photos/417379/pexels-photo-417379.jpeg"
+  }
+]
