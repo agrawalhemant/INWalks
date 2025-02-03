@@ -2,6 +2,7 @@
 using INWalks.API.Data;
 using INWalks.API.Models.Domain;
 using INWalks.API.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace INWalks.API.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<RegionDto>))]
+        [Authorize(Roles ="Reader, Writer")]
         public async Task<IActionResult> GetAllRegionsAsync([FromQuery] RegionEnum? filterBy, [FromQuery] string? filterQuery, [FromQuery] RegionEnum? sortBy, int page = 1, int size = 5)
         {
             var regions = await _regionData.GetAllRegionsAsync(filterBy, filterQuery, sortBy, page, size);
@@ -31,6 +33,7 @@ namespace INWalks.API.Controllers
 
         [HttpGet("{id:Guid}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RegionDto))]
+        [Authorize(Roles = "Reader, Writer")]
         public async Task<IActionResult> GetRegionByIdAsync([FromRoute] Guid id) {
             var region = await _regionData.GetRegionByIdAsync(id);
             if (region == null)
@@ -43,6 +46,7 @@ namespace INWalks.API.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(RegionDto))]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> CreateRegionAsync([FromBody] AddRegionRequestDto regionRequest)
         {
             if (!ModelState.IsValid)
@@ -58,6 +62,7 @@ namespace INWalks.API.Controllers
 
         [HttpPut("{id:Guid}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RegionDto))]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> UpdateRegionAsync([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto regionRequest)
         {
             if (!ModelState.IsValid)
@@ -76,6 +81,7 @@ namespace INWalks.API.Controllers
 
         [HttpDelete("{id:Guid}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> DeleteRegionAsync([FromRoute] Guid id)
         {
             var region = await _regionData.DeleteRegionAsync(id);

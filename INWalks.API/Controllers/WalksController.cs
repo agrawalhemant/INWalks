@@ -3,6 +3,7 @@ using Azure.Core;
 using INWalks.API.Data;
 using INWalks.API.Models.Domain;
 using INWalks.API.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace INWalks.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles ="Reader, Writer")]
         public async Task<IActionResult> GetAllWalksAsync([FromQuery] WalkEnum? filterBy, [FromQuery] string? filterQuery, [FromQuery] WalkEnum? sortBy, int page = 1, int size = 5)
         {
             List<Walk> walks = await _walkData.GetAllWalksAsync(filterBy, filterQuery, sortBy, page, size);
@@ -30,6 +32,7 @@ namespace INWalks.API.Controllers
         }
 
         [HttpGet("{id:Guid}")]
+        [Authorize(Roles = "Reader, Writer")]
         public async Task<IActionResult> GetWalkByIdAsync([FromRoute] Guid id)
         {
             Walk? walk = await _walkData.GetWalkByIdAsync(id);
@@ -42,6 +45,7 @@ namespace INWalks.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Reader, Writer")]
         public async Task<IActionResult> CreateWalkAsync([FromBody] AddWalkRequestDto addWalkRequestDto)
         {
             if(!ModelState.IsValid)
@@ -57,6 +61,7 @@ namespace INWalks.API.Controllers
         }
 
         [HttpPut("{id:Guid}")]
+        [Authorize(Roles = "Reader, Writer")]
         public async Task<IActionResult> UpdateWalkByIdAsync([FromRoute] Guid id, [FromBody] UpdateWalkRequestDto updateWalkRequestDto)
         {
             if (!ModelState.IsValid)
@@ -77,6 +82,7 @@ namespace INWalks.API.Controllers
         }
 
         [HttpDelete("{id:guid}")]
+        [Authorize(Roles = "Reader, Writer")]
         public async Task<IActionResult> DeleteWalkByIDAsync(Guid id)
         {
             Walk? walk = await _walkData.DeleteWalkByIdAsync(id);
