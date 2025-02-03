@@ -22,9 +22,9 @@ namespace INWalks.API.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<RegionDto>))]
-        public async Task<IActionResult> GetAllRegionsAsync()
+        public async Task<IActionResult> GetAllRegionsAsync([FromQuery] RegionFilters? filterBy, [FromQuery] string? filterQuery)
         {
-            var regions = await _regionData.GetAllRegionsAsync();
+            var regions = await _regionData.GetAllRegionsAsync(filterBy, filterQuery);
             List<RegionDto> regionsDtos = _mapper.Map<List<RegionDto>>(regions);
             return Ok(regionsDtos);
         }

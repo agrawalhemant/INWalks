@@ -1,4 +1,5 @@
 ﻿using INWalks.API.Models.Domain;
+using INWalks.API.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace INWalks.API.Data
@@ -21,9 +22,26 @@ namespace INWalks.API.Data
         {
             return await _dbContext.Walks.Include(x => x.Difficulty).Include(x => x.Region).FirstOrDefaultAsync(x => x.Id == id);
         }
-        public async Task<List<Walk>> GetAllWalksAsync()
+        public async Task<List<Walk>> GetAllWalksAsync(WalkFilters? filterBy = null, string? filterQuery = null)
         {
-            return await _dbContext.Walks.Include(x => x.Difficulty).Include(x => x.Region).ToListAsync();
+            var region = _dbContext.Walks.Include(x => x.Difficulty).Include(x => x.Region).AsQueryable();
+
+            if(filterBy is not null && !string.IsNullOrEmpty(filterQuery))
+            {
+                if(filterBy == WalkFilters.Name)
+                {
+                    region = region.Where(x => x.Name.Contains(filterQuery));
+                }
+                else if(filterBy == WalkFilters.Description)
+                {
+                    region = region.Where(x => x.Description.Contains(filterQuery));
+                }
+                else if(filterBy == WalkFilters.LengthInKms)
+                {
+                    region = region.Where(x => x.LengthInKms.ToString() == filterQuery);
+                }
+            }
+            return await region.ToListAsync();
         }
 
         public async Task<Walk?> UpdateWalkByIdAsync(Guid id, Walk walk)

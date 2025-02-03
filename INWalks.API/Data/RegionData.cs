@@ -19,9 +19,21 @@ namespace INWalks.API.Data
             return region;
         }
 
-        public async Task<List<Region>> GetAllRegionsAsync()
+        public async Task<List<Region>> GetAllRegionsAsync(RegionFilters? filterBy = null, string? filterQuery = null)
         {
-            return await _dbContext.Regions.ToListAsync();
+            var region =  _dbContext.Regions.AsQueryable();
+            if(filterBy is not null && !string.IsNullOrEmpty(filterQuery))
+            {
+                if(filterBy == RegionFilters.Name)
+                {
+                    region = region.Where(x => x.Name.Contains(filterQuery));
+                }
+                else if(filterBy == RegionFilters.Code)
+                {
+                    region = region.Where(x => x.Code.Contains(filterQuery));
+                }
+            }
+            return await region.ToListAsync();
         }
 
         public async Task<Region?> GetRegionByIdAsync(Guid id)

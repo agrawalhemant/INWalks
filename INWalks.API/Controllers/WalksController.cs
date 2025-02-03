@@ -22,9 +22,9 @@ namespace INWalks.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllWalksAsync()
+        public async Task<IActionResult> GetAllWalksAsync([FromQuery] WalkFilters? filterBy, [FromQuery] string? filterQuery)
         {
-            List<Walk> walks = await _walkData.GetAllWalksAsync();
+            List<Walk> walks = await _walkData.GetAllWalksAsync(filterBy, filterQuery);
             List <WalkDto> walksDto = _mapper.Map<List<WalkDto>>(walks);
             return Ok(walksDto);
         }

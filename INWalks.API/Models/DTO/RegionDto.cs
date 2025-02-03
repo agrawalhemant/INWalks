@@ -29,4 +29,10 @@ namespace INWalks.API.Models.DTO
         public string Name { get; set; }
         public string? RegionImageUrl { get; set; }
     }
+
+    public enum RegionFilters
+    {
+        Code,
+        Name
+    }
 }

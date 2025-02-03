@@ -46,4 +46,11 @@ namespace INWalks.API.Models.DTO
         [Required]
         public Guid RegionId { get; set; }
     }
+
+    public enum WalkFilters
+    {
+        Name,
+        Description,
+        LengthInKms
+    }
 }
