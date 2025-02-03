@@ -30,7 +30,7 @@ namespace INWalks.API.Models.DTO
         public string? RegionImageUrl { get; set; }
     }
 
-    public enum RegionFilters
+    public enum RegionEnum
     {
         Code,
         Name

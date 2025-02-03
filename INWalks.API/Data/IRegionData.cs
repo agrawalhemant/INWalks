@@ -7,7 +7,7 @@ namespace INWalks.API.Data
 {
     public interface IRegionData
     {
-        Task<List<Region>> GetAllRegionsAsync(RegionFilters? filterBy = null, string? filterQuery = null);
+        Task<List<Region>> GetAllRegionsAsync(RegionEnum? filterBy = null, string? filterQuery = null, RegionEnum? sortBy = null);
         Task<Region?> GetRegionByIdAsync(Guid id);
         Task<Region> CreateRegionAsync(Region region);
         Task<Region?> UpdateRegionAsync(Guid id, Region region);

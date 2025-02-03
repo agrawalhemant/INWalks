@@ -6,7 +6,7 @@ namespace INWalks.API.Data
 {
     public interface IWalkData
     {
-        Task<List<Walk>> GetAllWalksAsync(WalkFilters? filterBy = null, string? filterQuery = null);
+        Task<List<Walk>> GetAllWalksAsync(WalkEnum? filterBy = null, string? filterQuery = null, WalkEnum? sortBy = null);
         Task<Walk?> GetWalkByIdAsync(Guid id);
         Task<Walk> CreateWalkAsync(Walk walk);
         Task<Walk?> UpdateWalkByIdAsync(Guid id, Walk walk);

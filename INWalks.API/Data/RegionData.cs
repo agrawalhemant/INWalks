@@ -19,18 +19,29 @@ namespace INWalks.API.Data
             return region;
         }
 
-        public async Task<List<Region>> GetAllRegionsAsync(RegionFilters? filterBy = null, string? filterQuery = null)
+        public async Task<List<Region>> GetAllRegionsAsync(RegionEnum? filterBy = null, string? filterQuery = null, RegionEnum? sortBy = null)
         {
             var region =  _dbContext.Regions.AsQueryable();
             if(filterBy is not null && !string.IsNullOrEmpty(filterQuery))
             {
-                if(filterBy == RegionFilters.Name)
+                if(filterBy == RegionEnum.Name)
                 {
                     region = region.Where(x => x.Name.Contains(filterQuery));
                 }
-                else if(filterBy == RegionFilters.Code)
+                else if(filterBy == RegionEnum.Code)
                 {
                     region = region.Where(x => x.Code.Contains(filterQuery));
+                }
+            }
+            if(sortBy is not null)
+            {
+                if (sortBy == RegionEnum.Name)
+                {
+                    region = region.OrderBy(x => x.Name);
+                }
+                else if (sortBy == RegionEnum.Code)
+                {
+                    region = region.OrderBy(x => x.Code);
                 }
             }
             return await region.ToListAsync();

@@ -47,7 +47,7 @@ namespace INWalks.API.Models.DTO
         public Guid RegionId { get; set; }
     }
 
-    public enum WalkFilters
+    public enum WalkEnum
     {
         Name,
         Description,

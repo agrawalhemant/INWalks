@@ -22,23 +22,39 @@ namespace INWalks.API.Data
         {
             return await _dbContext.Walks.Include(x => x.Difficulty).Include(x => x.Region).FirstOrDefaultAsync(x => x.Id == id);
         }
-        public async Task<List<Walk>> GetAllWalksAsync(WalkFilters? filterBy = null, string? filterQuery = null)
+        public async Task<List<Walk>> GetAllWalksAsync(WalkEnum? filterBy = null, string? filterQuery = null, WalkEnum? sortBy = null)
         {
             var region = _dbContext.Walks.Include(x => x.Difficulty).Include(x => x.Region).AsQueryable();
 
             if(filterBy is not null && !string.IsNullOrEmpty(filterQuery))
             {
-                if(filterBy == WalkFilters.Name)
+                if(filterBy == WalkEnum.Name)
                 {
                     region = region.Where(x => x.Name.Contains(filterQuery));
                 }
-                else if(filterBy == WalkFilters.Description)
+                else if(filterBy == WalkEnum.Description)
                 {
                     region = region.Where(x => x.Description.Contains(filterQuery));
                 }
-                else if(filterBy == WalkFilters.LengthInKms)
+                else if(filterBy == WalkEnum.LengthInKms)
                 {
                     region = region.Where(x => x.LengthInKms.ToString() == filterQuery);
+                }
+            }
+
+            if(sortBy is not null)
+            {
+                if (sortBy == WalkEnum.Name)
+                {
+                    region = region.OrderBy(x => x.Name);
+                }
+                else if (sortBy == WalkEnum.Description)
+                {
+                    region = region.OrderBy(x => x.Description);
+                }
+                else if (sortBy == WalkEnum.LengthInKms)
+                {
+                    region = region.OrderBy(x => x.LengthInKms); 
                 }
             }
             return await region.ToListAsync();
