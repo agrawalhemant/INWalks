@@ -19,7 +19,7 @@ namespace INWalks.API.Data
             return region;
         }
 
-        public async Task<List<Region>> GetAllRegionsAsync(RegionEnum? filterBy = null, string? filterQuery = null, RegionEnum? sortBy = null)
+        public async Task<List<Region>> GetAllRegionsAsync(RegionEnum? filterBy = null, string? filterQuery = null, RegionEnum? sortBy = null, int page = 1, int size = 5)
         {
             var region =  _dbContext.Regions.AsQueryable();
             if(filterBy is not null && !string.IsNullOrEmpty(filterQuery))
@@ -44,7 +44,7 @@ namespace INWalks.API.Data
                     region = region.OrderBy(x => x.Code);
                 }
             }
-            return await region.ToListAsync();
+            return await region.Skip((page-1)*size).Take(size).ToListAsync();
         }
 
         public async Task<Region?> GetRegionByIdAsync(Guid id)

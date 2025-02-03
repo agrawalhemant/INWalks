@@ -22,23 +22,23 @@ namespace INWalks.API.Data
         {
             return await _dbContext.Walks.Include(x => x.Difficulty).Include(x => x.Region).FirstOrDefaultAsync(x => x.Id == id);
         }
-        public async Task<List<Walk>> GetAllWalksAsync(WalkEnum? filterBy = null, string? filterQuery = null, WalkEnum? sortBy = null)
+        public async Task<List<Walk>> GetAllWalksAsync(WalkEnum? filterBy = null, string? filterQuery = null, WalkEnum? sortBy = null, int page = 1, int size = 5)
         {
-            var region = _dbContext.Walks.Include(x => x.Difficulty).Include(x => x.Region).AsQueryable();
+            var walks = _dbContext.Walks.Include(x => x.Difficulty).Include(x => x.Region).AsQueryable();
 
             if(filterBy is not null && !string.IsNullOrEmpty(filterQuery))
             {
                 if(filterBy == WalkEnum.Name)
                 {
-                    region = region.Where(x => x.Name.Contains(filterQuery));
+                    walks = walks.Where(x => x.Name.Contains(filterQuery));
                 }
                 else if(filterBy == WalkEnum.Description)
                 {
-                    region = region.Where(x => x.Description.Contains(filterQuery));
+                    walks = walks.Where(x => x.Description.Contains(filterQuery));
                 }
                 else if(filterBy == WalkEnum.LengthInKms)
                 {
-                    region = region.Where(x => x.LengthInKms.ToString() == filterQuery);
+                    walks = walks.Where(x => x.LengthInKms.ToString() == filterQuery);
                 }
             }
 
@@ -46,18 +46,19 @@ namespace INWalks.API.Data
             {
                 if (sortBy == WalkEnum.Name)
                 {
-                    region = region.OrderBy(x => x.Name);
+                    walks = walks.OrderBy(x => x.Name);
                 }
                 else if (sortBy == WalkEnum.Description)
                 {
-                    region = region.OrderBy(x => x.Description);
+                    walks = walks.OrderBy(x => x.Description);
                 }
                 else if (sortBy == WalkEnum.LengthInKms)
                 {
-                    region = region.OrderBy(x => x.LengthInKms); 
+                    walks = walks.OrderBy(x => x.LengthInKms); 
                 }
             }
-            return await region.ToListAsync();
+
+            return await walks.Skip((page-1) * size).Take(size).ToListAsync();
         }
 
         public async Task<Walk?> UpdateWalkByIdAsync(Guid id, Walk walk)
