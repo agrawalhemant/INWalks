@@ -19,7 +19,7 @@ namespace INWalks.API.Data
 
         public async Task<List<Walk>> GetAllWalksAsync()
         {
-            return await _dbContext.Walks.ToListAsync();
+            return await _dbContext.Walks.Include(x => x.Difficulty).Include(x => x.Region).ToListAsync();
         }
     }
 }
