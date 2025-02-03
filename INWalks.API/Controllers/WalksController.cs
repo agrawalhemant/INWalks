@@ -4,6 +4,7 @@ using INWalks.API.Models.Domain;
 using INWalks.API.Models.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace INWalks.API.Controllers
 {
@@ -17,6 +18,14 @@ namespace INWalks.API.Controllers
         {
             _mapper = mapper;
             _walkData = walkData;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllWalksAsync()
+        {
+            List<Walk> walks = await _walkData.GetAllWalksAsync();
+            List <WalkDto> walksDto = _mapper.Map<List<WalkDto>>(walks);
+            return Ok(walksDto);
         }
 
         [HttpPost]
@@ -33,5 +42,6 @@ namespace INWalks.API.Controllers
             WalkDto walkDto = _mapper.Map<WalkDto>(walk);
             return Ok(walkDto);
         }
+
     }
 }

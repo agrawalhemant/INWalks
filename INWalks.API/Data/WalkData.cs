@@ -1,4 +1,5 @@
 ﻿using INWalks.API.Models.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace INWalks.API.Data
 {
@@ -14,6 +15,11 @@ namespace INWalks.API.Data
             await _dbContext.Walks.AddAsync(walk);
             await _dbContext.SaveChangesAsync();
             return walk;
+        }
+
+        public async Task<List<Walk>> GetAllWalksAsync()
+        {
+            return await _dbContext.Walks.ToListAsync();
         }
     }
 }
