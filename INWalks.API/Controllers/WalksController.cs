@@ -44,9 +44,9 @@ namespace INWalks.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateWalkAsync([FromBody] AddWalkRequestDto addWalkRequestDto)
         {
-            if(addWalkRequestDto is null)
+            if(!ModelState.IsValid)
             {
-                return BadRequest("walk request is not correct");
+                return BadRequest(ModelState);
             }
 
             Walk walk = _mapper.Map<Walk>(addWalkRequestDto);
@@ -59,9 +59,9 @@ namespace INWalks.API.Controllers
         [HttpPut("{id:Guid}")]
         public async Task<IActionResult> UpdateWalkByIdAsync([FromRoute] Guid id, [FromBody] UpdateWalkRequestDto updateWalkRequestDto)
         {
-            if(updateWalkRequestDto is null)
+            if (!ModelState.IsValid)
             {
-                return BadRequest("walk request is not correct");
+                return BadRequest(ModelState);
             }
 
             Walk? walk = _mapper.Map<Walk>(updateWalkRequestDto);

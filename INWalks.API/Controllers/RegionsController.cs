@@ -45,6 +45,10 @@ namespace INWalks.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(RegionDto))]
         public async Task<IActionResult> CreateRegionAsync([FromBody] AddRegionRequestDto regionRequest)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             Region region = _mapper.Map<Region>(regionRequest);
             region = await _regionData.CreateRegionAsync(region);
 
@@ -56,9 +60,9 @@ namespace INWalks.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RegionDto))]
         public async Task<IActionResult> UpdateRegionAsync([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto regionRequest)
         {
-            if(regionRequest == null)
+            if (!ModelState.IsValid)
             {
-                return BadRequest("region request is not correct");
+                return BadRequest();
             }
             Region region = _mapper.Map<Region>(regionRequest);
             region = await _regionData.UpdateRegionAsync(id, region);

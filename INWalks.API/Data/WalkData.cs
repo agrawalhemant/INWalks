@@ -40,6 +40,7 @@ namespace INWalks.API.Data
             existingWalk.DifficultyId = walk.DifficultyId;
 
             await _dbContext.SaveChangesAsync();
+            existingWalk = await GetWalkByIdAsync(existingWalk.Id);
             return existingWalk;
         }
 
