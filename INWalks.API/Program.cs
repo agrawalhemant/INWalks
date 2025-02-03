@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<INWalksDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IRegionData, RegionData>();
+builder.Services.AddScoped<IWalkData, WalkData>();
 builder.Services.AddAutoMapper(typeof(ModelMapperProfile));
 
 var app = builder.Build();
