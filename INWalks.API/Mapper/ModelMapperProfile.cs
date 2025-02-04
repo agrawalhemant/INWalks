@@ -23,6 +23,13 @@ namespace INWalks.API.Mapper
             #region Difficulty model mapper
             CreateMap<Difficulty, DifficultyDto>().ReverseMap();
             #endregion
+
+            #region Image model mapper
+            CreateMap<ImageUploadRequestDto, Image>()
+                .ForMember(dest => dest.FileExtension, opt => opt.MapFrom(src => Path.GetExtension(src.File.FileName)))
+                .ForMember(dest => dest.FileSizeInBytes, opt => opt.MapFrom(src => src.File.Length))
+                .ReverseMap();
+            #endregion
         }
     }
 }
